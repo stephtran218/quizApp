@@ -1,6 +1,9 @@
 body{
     background-color:rgb(232, 211, 232);
-    cursor: url("butterfly-removebg-preview.png"), pointer;
+    cursor: url("butterfly.png"), pointer;
+    width: 100vw;
+    height: 100vh;
+    padding-top: 5rem;
 }
 
 /* body:hover
@@ -13,9 +16,25 @@ body{
     border-radius: 10px;
     color: white;
     font-family: 'Lora', serif;
-    margin: 5rem 50em;
+    margin: 0em auto;
     font-size: 1.2rem;
     background-color: rgb(180, 116, 180);
     padding: 1rem 1.6rem;
+    width: 25%;
 
+}
+.start-btn{
+    text-align: center;
+    width: 100%;
+}
+button{
+    width: 12%;
+    height: 5rem;
+    margin: 9rem auto;
+    font-family: 'Lora', serif;
+    font-size: 1.8em;
+    background-color: rgb(180, 116, 180);
+    border: 0.4rem solid white;
+    border-radius: 10px;
+    color: white;
 }
