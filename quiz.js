@@ -1,62 +1,79 @@
 const startButtonElement = document.getElementById("startButton");
 const quizHeaderElement = document.querySelector(".quizHeader")
+const questionsElement = document.getElementById("questionsBox");
 
 const quizContent = [
     {
         question: "How many Grammys does Olivia Rodrigo have?",
-        option1: "2",
-        option2: "3",
-        option3: "1",
-        option4: "5",
+        options:[
+            {option: "2", correct: false},
+            {option: "3", correct: true},
+            {option: "1", correct: false},
+            {option: "5", correct:false}
+        ]
     },
     {
         question: "Which show(s) has Olivia Rodrigo been in?",
-        option1: "Bizaardvark",
-        option2: "High School Musical The Musical The Series",
-        option3: "Both of these",
-        option4: "None of these",
+        options: [
+            {option: "Bizaardvark", correct: false},
+            {option: "High School Musical The Musical The Series", correct: false},
+            {option: "Both of these", correct: true},
+            {option: "None of these", correct: false}
+        ]
     },
     {
         question: "How many albums does Olivia Rodrigo have?",
-        option1: "2",
-        option2: "1",
-        option3: "4",
-        option4: "3",
+        options: [
+            {option1: "2", correct: true},
+            {option2: "1", correct: false},
+            {option3: "4", correct: false},
+            {option4: "3", correct: false}
+        ]
     },
     {
         question: "What was Olivia Rodrigo’s debut song?",
-        option1: "All I Want",
-        option2: "Good 4 U",
-        option3: "deja vu",
-        option4: "drivers license",
+        options: [
+            {option1: "All I Want", correct: false},
+            {option2: "Good 4 U", correct: false},
+            {option3: "deja vu", correct: true},
+            {option4: "drivers license", correct: false},
+        ]
     },
     {
         question: "What movie did Olivia Rodrigo write “Can’t Catch Me Now” for?",
-        option1: "Divergent",
-        option2: "The Hunger Games: The Ballad of Songbirds & Snakes",
-        option3: "Red, White, and Royal Blue",
-        option4: "To All the Boys I’ve Loved Before",
+        options: [
+            {option1: "Divergent", correct: false},
+            {option2: "The Hunger Games: The Ballad of Songbirds & Snakes", correct: true},
+            {option3: "Red, White, and Royal Blue", correct: false},
+            {option4: "To All the Boys I’ve Loved Before", correct: false}
+        ]
     },
     {
         question: "What was Olivia Rodrigo’s first album called?",
-        option1: "GUTS",
-        option2: "Good Riddance",
-        option3: "SOUR",
-        option4: "Red",
+        options: [
+            {option1: "GUTS", correct: false},
+            {option2: "Good Riddance", correct: false},
+            {option3: "SOUR", correct: true},
+            {option4: "Red", correct: false}
+        ]
     },
     {
         question: "What is Olivia Rodrigo’s motif?",
-        option1: "Butterflies",
-        option2: "Bows",
-        option3: "Stars",
-        option4: "Cherries",
+        options: [
+            {option1: "Butterflies", correct: true},
+            {option2: "Bows", correct: false},
+            {option3: "Stars", correct: false},
+            {option4: "Cherries", correct: false}
+        ]
     },
     {
         question: "Where is Olivia Rodrigo from?",
-        option1: "Temecula, CA",
-        option2: "New York City, CA",
-        option3: "San Francisco, CA",
-        option4: "Salt Lake City, UT",
+        options: [
+            {option1: "Temecula, CA", correct: true},
+            {option2: "New York City, CA", correct: false},
+            {option3: "San Francisco, CA", correct: false},
+            {option4: "Salt Lake City, UT", correct: false}
+        ]
     },
     {
         question: "How old is Olivia Rodrigo?",
@@ -75,37 +92,65 @@ const quizContent = [
 ];
 
 let currentQuestionIndex = 0;
-let currentQuestion = quizContent[currentQuestionIndex]
+
+
+function startQuiz(){
+
+    startButtonElement.style.display = "none";
+    questionsElement.style.display = "flex";
+
+    const buttons = document.querySelectorAll(".optionStyle");
+
+    for(let i = 0; i < buttons.length; i++){
+        buttons[i].addEventListener("click", nextQuestion)
+    }
+    appearQuestions();
+    
+}
 
 function appearQuestions(){
-    const optionsContainer = document.createElement("div");
-    optionsContainer.classList.add("optionsDesign");
 
-    const firstOption = document.createElement("p");
-    firstOption.classList.add("optionStyle");
-    firstOption.innerText = currentQuestion.option1;
+    let currentQuestion = quizContent[currentQuestionIndex]
+        // const optionsContainer = document.createElement("div");
+    // optionsContainer.classList.add("optionsDesign");
+    // quizHeaderElement.innerHTML = currentQuestion.question;
 
-    const secondOption = document.createElement("p");
-    secondOption.classList.add("optionStyle");
-    secondOption.innerText = currentQuestion.option2;    
 
-    const thirdOption = document.createElement("p");
-    thirdOption.classList.add("optionStyle");
-    secondOthirdOptionption.innerText = currentQuestion.option3;  
+    // const firstOption = document.createElement("button");
+    // firstOption.classList.add("optionSizing");
+    // firstOption.innerText = currentQuestion.option1;
 
-    const fourthOption = document.createElement("p");
-    fourthOption.classList.add("optionStyle");
-    fourthOption.innerText = currentQuestion.option4;   
+    // const secondOption = document.createElement("button");
+    // secondOption.classList.add("optionSizing");
+    // secondOption.innerText = currentQuestion.option2;    
+
+    // const thirdOption = document.createElement("button");
+    // thirdOption.classList.add("optionSizing");
+    // thirdOption.innerText = currentQuestion.option3;
+
+    // const fourthOption = document.createElement("button");
+    // fourthOption.classList.add("optionSizing");
+    // fourthOption.innerText = currentQuestion.option4;   
     
-    optionsContainer.appendChild(firstOption);
-    optionsContainer.appendChild(secondOption);
-    optionsContainer.appendChild(thirdOption);
-    optionsContainer.appendChild(fourthOption);
+    // optionsContainer.appendChild(quizHeaderElement)
+    // optionsContainer.appendChild(firstOption);
+    // optionsContainer.appendChild(secondOption);
+    // optionsContainer.appendChild(thirdOption);
+    // optionsContainer.appendChild(fourthOption);
 
-    document.body.appendChild(optionsContainer);
-}
-function startQuiz(){
-    quizHeaderElement.innerHTML = question
+    // document.body.appendChild(optionsContainer);
 }
 
-startButtonElement.addEventListener("click", startQuiz)
+
+function nextQuestion(){
+    currentQuestionIndex++;
+
+    if(currentQuestionIndex < quizContent.length){
+        currentQuestion = quizContent[currentQuestionIndex];
+        appearQuestions();
+    } else {
+        quizHeaderElement.innerHTML = "You got:"
+    }
+}
+
+startButtonElement.addEventListener("click", startQuiz);
