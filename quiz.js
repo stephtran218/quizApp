@@ -77,17 +77,21 @@ const quizContent = [
     },
     {
         question: "How old is Olivia Rodrigo?",
-        option1: "17",
-        option2: "20",
-        option3: "19",
-        option4: "21",
+        option: [
+            {option1: "17", correct: false},
+            {option2: "20", correct: true},
+            {option3: "19", correct: false},
+            {option4: "21", correct: false}
+        ]
     },
     {
         question: "Which singer is Olivia Rodrigo’s best friend?",
-        option1: "Sabrina Carpenter",
-        option2: "SZA",
-        option3: "Lorde",
-        option4: "Conan Gray",
+        option: [
+            {option1: "Sabrina Carpenter", correct: false},
+            {option2: "SZA", correct: false},
+            {option3: "Lorde", correct: false},
+            {option4: "Conan Gray", correct: true}
+        ]
     },
 ];
 
