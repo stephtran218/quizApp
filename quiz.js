@@ -1,6 +1,7 @@
 const startButtonElement = document.getElementById("startButton");
 const quizHeaderElement = document.querySelector(".quizHeader")
 const questionsElement = document.getElementById("questionsBox");
+const nextButtonElement = document.getElementById("next-btn")
 
 const quizContent = [
     {
@@ -8,7 +9,7 @@ const quizContent = [
         options:[
             {option: "2", correct: false},
             {option: "3", correct: true},
-            {option: "1", correct: false},
+            {option:"1", correct: false},
             {option: "5", correct:false}
         ]
     },
@@ -24,125 +25,130 @@ const quizContent = [
     {
         question: "How many albums does Olivia Rodrigo have?",
         options: [
-            {option1: "2", correct: true},
-            {option2: "1", correct: false},
-            {option3: "4", correct: false},
-            {option4: "3", correct: false}
+            {option: "2", correct: true},
+            {option: "1", correct: false},
+            {option: "4", correct: false},
+            {option: "3", correct: false}
         ]
     },
     {
         question: "What was Olivia Rodrigo’s debut song?",
         options: [
-            {option1: "All I Want", correct: false},
-            {option2: "Good 4 U", correct: false},
-            {option3: "deja vu", correct: true},
-            {option4: "drivers license", correct: false},
+            {option: "All I Want", correct: false},
+            {option: "Good 4 U", correct: false},
+            {option: "deja vu", correct: false},
+            {option: "drivers license", correct: true},
         ]
     },
     {
         question: "What movie did Olivia Rodrigo write “Can’t Catch Me Now” for?",
         options: [
-            {option1: "Divergent", correct: false},
-            {option2: "The Hunger Games: The Ballad of Songbirds & Snakes", correct: true},
-            {option3: "Red, White, and Royal Blue", correct: false},
-            {option4: "To All the Boys I’ve Loved Before", correct: false}
+            {option: "Divergent", correct: false},
+            {option: "The Hunger Games: The Ballad of Songbirds & Snakes", correct: true},
+            {option: "Red, White, and Royal Blue", correct: false},
+            {option: "To All the Boys I’ve Loved Before", correct: false}
         ]
     },
     {
         question: "What was Olivia Rodrigo’s first album called?",
         options: [
-            {option1: "GUTS", correct: false},
-            {option2: "Good Riddance", correct: false},
-            {option3: "SOUR", correct: true},
-            {option4: "Red", correct: false}
+            {option: "GUTS", correct: false},
+            {option: "Good Riddance", correct: false},
+            {option: "SOUR", correct: true},
+            {option: "Red", correct: false}
         ]
     },
     {
         question: "What is Olivia Rodrigo’s motif?",
         options: [
-            {option1: "Butterflies", correct: true},
-            {option2: "Bows", correct: false},
-            {option3: "Stars", correct: false},
-            {option4: "Cherries", correct: false}
+            {option: "Butterflies", correct: true},
+            {option: "Bows", correct: false},
+            {option: "Stars", correct: false},
+            {option: "Cherries", correct: false}
         ]
     },
     {
         question: "Where is Olivia Rodrigo from?",
         options: [
-            {option1: "Temecula, CA", correct: true},
-            {option2: "New York City, CA", correct: false},
-            {option3: "San Francisco, CA", correct: false},
-            {option4: "Salt Lake City, UT", correct: false}
+            {option: "Temecula, CA", correct: true},
+            {option: "New York City, CA", correct: false},
+            {option: "San Francisco, CA", correct: false},
+            {option: "Salt Lake City, UT", correct: false}
         ]
     },
     {
         question: "How old is Olivia Rodrigo?",
-        option: [
-            {option1: "17", correct: false},
-            {option2: "20", correct: true},
-            {option3: "19", correct: false},
-            {option4: "21", correct: false}
+        options: [
+            {option: "17", correct: false},
+            {option: "20", correct: true},
+            {option: "19", correct: false},
+            {option: "21", correct: false}
         ]
     },
     {
         question: "Which singer is Olivia Rodrigo’s best friend?",
-        option: [
-            {option1: "Sabrina Carpenter", correct: false},
-            {option2: "SZA", correct: false},
-            {option3: "Lorde", correct: false},
-            {option4: "Conan Gray", correct: true}
+        options: [
+            {option: "Sabrina Carpenter", correct: false},
+            {option: "SZA", correct: false},
+            {option: "Lorde", correct: false},
+            {option: "Conan Gray", correct: true}
         ]
     },
 ];
 
 let currentQuestionIndex = 0;
+const buttons = document.querySelectorAll(".option");
+let currentQuestion = quizContent[currentQuestionIndex];
+let optionPicked = false;
+let correctAnswers = 0;
 
 
 function startQuiz(){
 
     startButtonElement.style.display = "none";
     questionsElement.style.display = "flex";
+    nextButtonElement.style.display = "flex";
 
-    const buttons = document.querySelectorAll(".optionStyle");
 
     for(let i = 0; i < buttons.length; i++){
-        buttons[i].addEventListener("click", nextQuestion)
+        buttons[i].addEventListener("click", checkAnswer)
     }
     appearQuestions();
     
 }
 
+function checkAnswer(event){
+    let objectIndex = -1;
+    let answerPicked = event.target;
+    for(let i = 0; i < currentQuestion.options.length; i++){
+        if(answerPicked.innerText === currentQuestion.options[i].option){
+            objectIndex = i; 
+        }
+    }
+    console.log(answerPicked)
+    if(!optionPicked){
+        console.log("help")
+        if(currentQuestion.options[objectIndex].correct){
+            answerPicked.style.backgroundColor = "green";
+            correctAnswers++;
+        }else{
+            answerPicked.style.backgroundColor = "red";
+        }
+    }
+    
+    optionPicked = true;
+}
+
+
 function appearQuestions(){
 
-    let currentQuestion = quizContent[currentQuestionIndex]
-        // const optionsContainer = document.createElement("div");
-    // optionsContainer.classList.add("optionsDesign");
-    // quizHeaderElement.innerHTML = currentQuestion.question;
+    quizHeaderElement.innerText = currentQuestion.question;
+
+    for(let i = 0; i < buttons.length; i++){
+        buttons[i].innerText = currentQuestion.options[i].option;
+    }
 
 
-    // const firstOption = document.createElement("button");
-    // firstOption.classList.add("optionSizing");
-    // firstOption.innerText = currentQuestion.option1;
-
-    // const secondOption = document.createElement("button");
-    // secondOption.classList.add("optionSizing");
-    // secondOption.innerText = currentQuestion.option2;    
-
-    // const thirdOption = document.createElement("button");
-    // thirdOption.classList.add("optionSizing");
-    // thirdOption.innerText = currentQuestion.option3;
-
-    // const fourthOption = document.createElement("button");
-    // fourthOption.classList.add("optionSizing");
-    // fourthOption.innerText = currentQuestion.option4;   
-    
-    // optionsContainer.appendChild(quizHeaderElement)
-    // optionsContainer.appendChild(firstOption);
-    // optionsContainer.appendChild(secondOption);
-    // optionsContainer.appendChild(thirdOption);
-    // optionsContainer.appendChild(fourthOption);
-
-    // document.body.appendChild(optionsContainer);
 }
 
 
@@ -151,6 +157,10 @@ function nextQuestion(){
 
     if(currentQuestionIndex < quizContent.length){
         currentQuestion = quizContent[currentQuestionIndex];
+        optionPicked = false;
+        for(let i = 0; i < buttons.length; i++){
+            buttons[i].style.backgroundColor = "rgb(180, 116, 180)"
+        }
         appearQuestions();
     } else {
         quizHeaderElement.innerHTML = "You got:"
@@ -158,3 +168,4 @@ function nextQuestion(){
 }
 
 startButtonElement.addEventListener("click", startQuiz);
+nextButtonElement.addEventListener("click", nextQuestion)

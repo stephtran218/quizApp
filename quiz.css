@@ -16,16 +16,13 @@ body {
     font-size: 1.2rem;
     background-color: rgb(180, 116, 180);
     padding: 1rem 1.6rem;
-    width: 22%;
+    width: 25%;
     cursor: url("butterfly.png"), pointer;
 }
 
-.startButton {
+.startButton{
     text-align: center;
-    width: 100%;
-    cursor: url("butterfly.png"), pointer;
 }
-
 .start-btn {
     width: 12%;
     height: 5rem;
@@ -39,32 +36,49 @@ body {
     cursor: url("butterfly.png"), pointer;
 }
 
-/* .optionSizing{
-    width: 5rem;
-    height: 5rem;
-    font-size: 1.2rem;
-    text-align: center;
-    border: 1px solid black;
-} */
-
 .quiz-game{
-    border: 2px solid red;
     width: 70%;
     margin: 0 auto;
 }
 
 .options-box{
-    border: 2px solid black;
     display: none;
     justify-content: space-around;
     flex-direction: column;
-    height: 10rem;
-    width: 60%;;
-    margin: 0 auto;
+    height: 30rem;
+    width: 40%;
+    margin: 8rem auto;
 }
+
 
 .row1, .row2{
     display: flex;
     justify-content: space-around;
 }
-
+ .option{
+    font-family: 'Lora', serif;
+    font-size: 1.3rem;
+    background-color: rgb(180, 116, 180);
+    border: 0.4rem solid white;
+    border-radius: 10px;
+    color: white;
+    cursor: url("butterfly.png"), pointer;
+    width: 18rem;
+    height: 7rem;
+    padding: 0rem 0rem;
+}
+.nextButton{
+    font-size: 1.4rem;
+    width: 7.5rem;
+    height: 5rem;
+    background-color: rgb(180, 116, 180);
+    border: 0.4rem solid white;
+    font-family: 'Lora', serif;
+    border-radius: 10px;
+    color: white;
+    cursor: url("butterfly.png"), pointer;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
