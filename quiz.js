@@ -163,7 +163,9 @@ function nextQuestion(){
         }
         appearQuestions();
     } else {
-        quizHeaderElement.innerHTML = "You got:"
+        const totalQuestions = quizContent.length;
+        const percentage = (correctAnswers / totalQuestions) *100;
+        quizHeaderElement.innerHTML = "You got: " + percentage.toFixed(2) + "%";
     }
 }
 
